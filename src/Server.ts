@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import { Application } from 'express'
 import { RoutesApp } from './routes/RoutesApp'
 
@@ -17,6 +18,7 @@ export class Server {
 
     public start = async () => {
         this.app.use(express.json())
+        this.app.use(cors)
         this.app.use(RoutesApp.routes)
         this.app.listen(this.opts.port, () => {
             console.log(`Listening on port ${this.opts.port}`)
